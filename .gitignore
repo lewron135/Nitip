@@ -1,0 +1,68 @@
+# ——————————————————————————————————————————————————————————
+# JEJAK — .gitignore
+# Aturan tim §23.2: berkas ini masuk SEBELUM baris kode pertama.
+# Kalau kamu menambah folder baru yang menghasilkan rahasia atau
+# artefak build, tambahkan di sini pada commit yang sama.
+# ——————————————————————————————————————————————————————————
+
+# —— rahasia ——
+.env
+.env.*
+!.env.example
+
+# —— Node ——
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+
+# —— Next.js / frontend ——
+.next/
+out/
+build/
+.vercel/
+next-env.d.ts
+*.tsbuildinfo
+
+# —— Foundry / kontrak ——
+cache/
+broadcast/
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+# deployments/ SENGAJA di-commit: alamat, DEPLOY_BLOCK, dan ABI
+# adalah kontrak antarmuka antar-orang (§18.1).
+
+# —— Python ——
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# —— basis data lokal ——
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+
+# —— unggahan & cache runtime ——
+services/verifier/uploads/
+services/**/data/
+.cache/
+
+# —— OS & editor ——
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# —— artefak sementara ——
+*.log
+tmp/
+.tmp/

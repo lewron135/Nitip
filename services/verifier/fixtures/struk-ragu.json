@@ -1,0 +1,10 @@
+{
+  "merchant": null,
+  "tanggal": null,
+  "mataUang": "JPY",
+  "nominal": null,
+  "item": [],
+  "keyakinan": 0.31,
+  "catatan": "Struk terpotong di bagian bawah dan ada dua angka yang sama-sama mungkin total (¥8.800 dan ¥11.000). Tidak menebak.",
+  "sumber": "mock"
+}

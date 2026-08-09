@@ -1,0 +1,60 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+test = "test"
+script = "script"
+
+# §12.1 C-07 — Solidity ^0.8.20. Versi dikunci supaya bytecode
+# yang kalian verifikasi di BscScan sama persis dengan yang di CI.
+solc_version = "0.8.24"
+evm_version = "shanghai"          # BSC belum mendukung opcode Cancun sepenuhnya
+optimizer = true
+optimizer_runs = 200
+# `createOrder` memancarkan event 7-field; tanpa via_ir solc kehabisan slot
+# stack ("Stack too deep"). Ini bukan pilihan gaya — build gagal tanpanya.
+via_ir = true
+
+# Peringatan diperlakukan serius, tapi tidak menggagalkan build lokal.
+# CI menjalankan `forge build --sizes` supaya batas 24 KB terlihat.
+bytecode_hash = "none"
+cbor_metadata = false
+
+fs_permissions = [{ access = "read-write", path = "./deployments" }]
+
+remappings = [
+    "forge-std/=lib/forge-std/src/",
+    "@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/",
+]
+
+[lint]
+# `block.timestamp` dipakai sengaja di seluruh kontrak. Semua jendela waktu
+# kami berskala jam sampai hari (24 jam, 72 jam, 7 hari); pergeseran beberapa
+# detik yang bisa dilakukan validator tidak mengubah hasil apa pun. Peringatan
+# ini dimatikan setelah dibaca, bukan sebelum.
+exclude_lints = ["block-timestamp"]
+
+[profile.default.fuzz]
+runs = 512
+max_test_rejects = 100_000
+
+[profile.ci.fuzz]
+runs = 2048
+
+[profile.default.invariant]
+runs = 128
+depth = 32
+fail_on_revert = false
+
+[fmt]
+line_length = 110
+tab_width = 4
+bracket_spacing = false
+int_types = "long"
+
+[rpc_endpoints]
+bsc_testnet = "${BSC_TESTNET_RPC}"
+bsc_testnet_backup = "${BSC_TESTNET_RPC_BACKUP}"
+
+[etherscan]
+bsc_testnet = {key = "${BSCSCAN_API_KEY}", chain = 97, url = "https://api-testnet.bscscan.com/api"}

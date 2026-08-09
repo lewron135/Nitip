@@ -1,0 +1,10 @@
+{
+  "merchant": "マツモトキヨシ 新宿東口店",
+  "tanggal": "2026-08-14",
+  "mataUang": "JPY",
+  "nominal": 11000,
+  "item": [{"nama": "スキンケアセット X 50ml", "jumlah": 1, "harga": 10000}],
+  "keyakinan": 0.94,
+  "catatan": "Struk terbaca jelas. Total ¥11.000 sudah termasuk pajak konsumsi 10%.",
+  "sumber": "mock"
+}
