@@ -1,0 +1,657 @@
+{
+  "version": "JEJAK-TRUST v1.0",
+  "dibuat": "2026-08-09T15:31:39.225Z",
+  "catatan": "Dihasilkan oleh services/scoring/crosscheck.ts. Berkas ini adalah kontrak antara implementasi TypeScript dan Python. Jangan disunting tangan.",
+  "kasus": [
+    {
+      "name": "masterplan-13.3-uji-kewarasan",
+      "why": "Angka yang dihitung tangan di §13.3. Kalau ini bukan 90.50, ada yang salah membaca spesifikasi.",
+      "input": {
+        "nAccepted": 10,
+        "nCompleted": 10,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "600000000000000000",
+        "uBuyers": 8,
+        "medHours": 40
+      },
+      "ts": {
+        "trust": "90.50",
+        "trustBp": 9050,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 5000,
+          "spd": 10000,
+          "div": 8000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "n0-belum-ada-apa-apa",
+      "why": "[WAJIB] n=0. Jastiper yang baru membuat wallet. Harus null, bukan 0.00.",
+      "input": {
+        "nAccepted": 0,
+        "nCompleted": 0,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "0",
+        "uBuyers": 0,
+        "medHours": 0
+      },
+      "ts": {
+        "trust": null,
+        "trustBp": null,
+        "components": {
+          "comp": 0,
+          "disp": 0,
+          "vol": 0,
+          "spd": 0,
+          "div": 0
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "n2-tepat-di-bawah-ambang",
+      "why": "[WAJIB] n=2. Satu order lagi menuju ambang. Masih harus null (N-13).",
+      "input": {
+        "nAccepted": 2,
+        "nCompleted": 2,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "200000000000000000",
+        "uBuyers": 2,
+        "medHours": 30
+      },
+      "ts": {
+        "trust": null,
+        "trustBp": null,
+        "components": {
+          "comp": 0,
+          "disp": 0,
+          "vol": 0,
+          "spd": 0,
+          "div": 0
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "n3-ambang-tepat-terlewati",
+      "why": "[WAJIB] n=3. Order ketiga tuntas: skor pertama kali boleh tampil.",
+      "input": {
+        "nAccepted": 3,
+        "nCompleted": 3,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "300000000000000000",
+        "uBuyers": 3,
+        "medHours": 24
+      },
+      "ts": {
+        "trust": "88.75",
+        "trustBp": 8875,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 2500,
+          "spd": 10000,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "maksimum-sempurna",
+      "why": "[WAJIB] Batas atas. Semua komponen 10000 → harus tepat 100.00, bukan 99.99 atau 100.01.",
+      "input": {
+        "nAccepted": 40,
+        "nCompleted": 40,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "12000000000000000000",
+        "uBuyers": 40,
+        "medHours": 12
+      },
+      "ts": {
+        "trust": "100.00",
+        "trustBp": 10000,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 10000,
+          "spd": 10000,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "semua-sengketa-kalah",
+      "why": "[WAJIB] Jastiper yang kalah di setiap sengketa. Skor harus jatuh, bukan sekadar turun sedikit.",
+      "input": {
+        "nAccepted": 10,
+        "nCompleted": 3,
+        "nAbandoned": 0,
+        "nLost": 7,
+        "vTotalWei": "100000000000000000",
+        "uBuyers": 3,
+        "medHours": 200
+      },
+      "ts": {
+        "trust": "35.75",
+        "trustBp": 3575,
+        "components": {
+          "comp": 3000,
+          "disp": 7000,
+          "vol": 2500,
+          "spd": 2500,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "satu-pembeli-saja",
+      "why": "[WAJIB] Sepuluh order, satu pembeli. Ini bentuk paling murni dari reputasi yang difarming.",
+      "input": {
+        "nAccepted": 10,
+        "nCompleted": 10,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "1000000000000000000",
+        "uBuyers": 1,
+        "medHours": 20
+      },
+      "ts": {
+        "trust": "83.50",
+        "trustBp": 8350,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 5000,
+          "spd": 10000,
+          "div": 1000
+        },
+        "peringatanKonsentrasi": true
+      }
+    },
+    {
+      "name": "median-jumlah-genap",
+      "why": "[WAJIB] Empat data → ambil tengah bawah, bukan rata-rata. Sumber ketidakcocokan nomor satu.",
+      "input": {
+        "nAccepted": 4,
+        "nCompleted": 4,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "400000000000000000",
+        "uBuyers": 4,
+        "medHours": 20
+      },
+      "ts": {
+        "trust": "88.75",
+        "trustBp": 8875,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 2500,
+          "spd": 10000,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "median-jumlah-ganjil",
+      "why": "[WAJIB] Lima data → elemen tengah sungguhan.",
+      "input": {
+        "nAccepted": 5,
+        "nCompleted": 5,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "500000000000000000",
+        "uBuyers": 4,
+        "medHours": 30
+      },
+      "ts": {
+        "trust": "90.50",
+        "trustBp": 9050,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 5000,
+          "spd": 10000,
+          "div": 8000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "batas-volume-tepat-0.1",
+      "why": "Batas bawah volumeTier. `< 0,1e18` bernilai 0; tepat 0,1e18 bernilai 2500.",
+      "input": {
+        "nAccepted": 5,
+        "nCompleted": 5,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "100000000000000000",
+        "uBuyers": 5,
+        "medHours": 40
+      },
+      "ts": {
+        "trust": "88.75",
+        "trustBp": 8875,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 2500,
+          "spd": 10000,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "batas-volume-tepat-di-bawah-0.1",
+      "why": "Satu wei di bawah batas. Off-by-one di tabel tier ketahuan di sini, bukan di panggung.",
+      "input": {
+        "nAccepted": 5,
+        "nCompleted": 5,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "99999999999999999",
+        "uBuyers": 5,
+        "medHours": 40
+      },
+      "ts": {
+        "trust": "85.00",
+        "trustBp": 8500,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 0,
+          "spd": 10000,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "batas-volume-tepat-10",
+      "why": "Batas atas volumeTier: >= 10e18 bernilai penuh.",
+      "input": {
+        "nAccepted": 5,
+        "nCompleted": 5,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "10000000000000000000",
+        "uBuyers": 5,
+        "medHours": 40
+      },
+      "ts": {
+        "trust": "100.00",
+        "trustBp": 10000,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 10000,
+          "spd": 10000,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "batas-kecepatan-48-jam",
+      "why": "speedTier: `<= 48` masih nilai penuh.",
+      "input": {
+        "nAccepted": 6,
+        "nCompleted": 6,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "500000000000000000",
+        "uBuyers": 6,
+        "medHours": 48
+      },
+      "ts": {
+        "trust": "92.50",
+        "trustBp": 9250,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 5000,
+          "spd": 10000,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "batas-kecepatan-49-jam",
+      "why": "Satu jam lewat batas → turun satu tingkat. Membuktikan perbandingannya `<=`, bukan `<`.",
+      "input": {
+        "nAccepted": 6,
+        "nCompleted": 6,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "500000000000000000",
+        "uBuyers": 6,
+        "medHours": 49
+      },
+      "ts": {
+        "trust": "90.00",
+        "trustBp": 9000,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 5000,
+          "spd": 7500,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "batas-kecepatan-336-jam",
+      "why": "Tepat 14 hari — masih 2500.",
+      "input": {
+        "nAccepted": 6,
+        "nCompleted": 6,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "500000000000000000",
+        "uBuyers": 6,
+        "medHours": 336
+      },
+      "ts": {
+        "trust": "85.00",
+        "trustBp": 8500,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 5000,
+          "spd": 2500,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "kecepatan-sangat-lambat",
+      "why": "> 336 jam → 0. Jastiper yang selalu telat tidak boleh dapat poin kecepatan.",
+      "input": {
+        "nAccepted": 6,
+        "nCompleted": 6,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "500000000000000000",
+        "uBuyers": 6,
+        "medHours": 1000
+      },
+      "ts": {
+        "trust": "82.50",
+        "trustBp": 8250,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 5000,
+          "spd": 0,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "pembulatan-ke-bawah-comp",
+      "why": "7/9 tidak bulat. Menguji floor, bukan pembulatan ke terdekat.",
+      "input": {
+        "nAccepted": 9,
+        "nCompleted": 7,
+        "nAbandoned": 1,
+        "nLost": 1,
+        "vTotalWei": "700000000000000000",
+        "uBuyers": 5,
+        "medHours": 55
+      },
+      "ts": {
+        "trust": "72.69",
+        "trustBp": 7269,
+        "components": {
+          "comp": 7777,
+          "disp": 2222,
+          "vol": 5000,
+          "spd": 7500,
+          "div": 7142
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "pembulatan-ke-bawah-div",
+      "why": "1/3 = 3333,33… → 3333. Kalau salah satu bahasa membulatkan ke 3334, ketahuan di sini.",
+      "input": {
+        "nAccepted": 3,
+        "nCompleted": 3,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "300000000000000000",
+        "uBuyers": 1,
+        "medHours": 24
+      },
+      "ts": {
+        "trust": "82.08",
+        "trustBp": 8208,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 2500,
+          "spd": 10000,
+          "div": 3333
+        },
+        "peringatanKonsentrasi": true
+      }
+    },
+    {
+      "name": "kabur-sekali",
+      "why": "Satu order ditinggalkan menaikkan disp dan menurunkan comp sekaligus.",
+      "input": {
+        "nAccepted": 11,
+        "nCompleted": 10,
+        "nAbandoned": 1,
+        "nLost": 0,
+        "vTotalWei": "600000000000000000",
+        "uBuyers": 8,
+        "medHours": 40
+      },
+      "ts": {
+        "trust": "84.58",
+        "trustBp": 8458,
+        "components": {
+          "comp": 9090,
+          "disp": 909,
+          "vol": 5000,
+          "spd": 10000,
+          "div": 8000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "campuran-kabur-dan-kalah",
+      "why": "Keduanya masuk ke pembilang `disp` yang sama. Menguji penjumlahannya, bukan hanya salah satu.",
+      "input": {
+        "nAccepted": 20,
+        "nCompleted": 15,
+        "nAbandoned": 2,
+        "nLost": 3,
+        "vTotalWei": "3000000000000000000",
+        "uBuyers": 12,
+        "medHours": 60
+      },
+      "ts": {
+        "trust": "75.50",
+        "trustBp": 7550,
+        "components": {
+          "comp": 7500,
+          "disp": 2500,
+          "vol": 7500,
+          "spd": 7500,
+          "div": 8000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "volume-besar-tapi-satu-pembeli",
+      "why": "Skenario farming yang mahal: nilainya besar, keragamannya nol. Spanduk peringatan harus menyala.",
+      "input": {
+        "nAccepted": 30,
+        "nCompleted": 30,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "25000000000000000000",
+        "uBuyers": 2,
+        "medHours": 10
+      },
+      "ts": {
+        "trust": "90.66",
+        "trustBp": 9066,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 10000,
+          "spd": 10000,
+          "div": 666
+        },
+        "peringatanKonsentrasi": true
+      }
+    },
+    {
+      "name": "spanduk-tepat-di-batas",
+      "why": "uBuyers*2 == nCompleted → spanduk TIDAK menyala. Perbandingannya `<`, bukan `<=`.",
+      "input": {
+        "nAccepted": 10,
+        "nCompleted": 10,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "1000000000000000000",
+        "uBuyers": 5,
+        "medHours": 40
+      },
+      "ts": {
+        "trust": "87.50",
+        "trustBp": 8750,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 5000,
+          "spd": 10000,
+          "div": 5000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "spanduk-satu-langkah-di-bawah-batas",
+      "why": "uBuyers*2 < nCompleted → spanduk menyala. Pasangan dari kasus di atas.",
+      "input": {
+        "nAccepted": 10,
+        "nCompleted": 10,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "1000000000000000000",
+        "uBuyers": 4,
+        "medHours": 40
+      },
+      "ts": {
+        "trust": "86.50",
+        "trustBp": 8650,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 5000,
+          "spd": 10000,
+          "div": 4000
+        },
+        "peringatanKonsentrasi": true
+      }
+    },
+    {
+      "name": "diterima-banyak-tuntas-sedikit",
+      "why": "Jastiper yang gemar mengambil order lalu tidak menyelesaikannya. comp harus anjlok.",
+      "input": {
+        "nAccepted": 50,
+        "nCompleted": 5,
+        "nAbandoned": 20,
+        "nLost": 5,
+        "vTotalWei": "250000000000000000",
+        "uBuyers": 5,
+        "medHours": 300
+      },
+      "ts": {
+        "trust": "34.75",
+        "trustBp": 3475,
+        "components": {
+          "comp": 1000,
+          "disp": 5000,
+          "vol": 2500,
+          "spd": 2500,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "volume-nol-tapi-tuntas",
+      "why": "Order bernilai sangat kecil: vol = 0 tapi skor tetap harus terhitung.",
+      "input": {
+        "nAccepted": 5,
+        "nCompleted": 5,
+        "nAbandoned": 0,
+        "nLost": 0,
+        "vTotalWei": "1000",
+        "uBuyers": 5,
+        "medHours": 5
+      },
+      "ts": {
+        "trust": "85.00",
+        "trustBp": 8500,
+        "components": {
+          "comp": 10000,
+          "disp": 0,
+          "vol": 0,
+          "spd": 10000,
+          "div": 10000
+        },
+        "peringatanKonsentrasi": false
+      }
+    },
+    {
+      "name": "angka-besar-tidak-realistis",
+      "why": "Menguji bahwa tidak ada yang meluap atau berubah jadi float di angka besar.",
+      "input": {
+        "nAccepted": 100000,
+        "nCompleted": 99999,
+        "nAbandoned": 1,
+        "nLost": 0,
+        "vTotalWei": "1000000000000000000000000",
+        "uBuyers": 65432,
+        "medHours": 47
+      },
+      "ts": {
+        "trust": "96.53",
+        "trustBp": 9653,
+        "components": {
+          "comp": 9999,
+          "disp": 0,
+          "vol": 10000,
+          "spd": 10000,
+          "div": 6543
+        },
+        "peringatanKonsentrasi": false
+      }
+    }
+  ]
+}

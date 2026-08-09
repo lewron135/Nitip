@@ -1,0 +1,369 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════════════
+   JEJAK — sistem desain "Precision Trust"
+   ══════════════════════════════════════════════════════════════════════
+
+   PREMIS DESAIN
+   Produk ini menjual satu hal: angka yang tidak bisa kami manipulasi.
+   Maka antarmukanya harus terasa seperti INSTRUMEN, bukan seperti brosur.
+   Tenang, presisi, banyak ruang kosong, dan angka sebagai pahlawan.
+
+   TIGA KUNCI YANG TIDAK BOLEH DILANGGAR DI SELURUH APLIKASI
+   ─────────────────────────────────────────────────────────
+   1. SATU TEMA PER HALAMAN. Terang atau gelap mengikuti sistem operasi
+      pengguna. Tidak ada satu pun bagian yang membalik ke tema lawan di
+      tengah gulir.
+
+   2. SATU AKSEN. `--voltage` dipakai untuk aksi utama dan tautan, titik.
+      Warna semantik (tahan/tuntas/sengketa) BUKAN aksen — mereka adalah
+      status, dan tidak pernah dipakai sebagai hiasan.
+
+   3. SATU SISTEM SUDUT, dengan aturan tertulis:
+        kontrol (tombol, input)  → --r-control  8px
+        panel (kartu, tabel)     → --r-panel   14px
+        chip status              → penuh (pill)
+      Tidak ada nilai radius lain di mana pun.
+
+   ══════════════════════════════════════════════════════════════════════ */
+
+@theme {
+  /* ── Tipografi ────────────────────────────────────────────────────
+     Geist untuk teks, Geist Mono untuk SETIAP ANGKA. Angka yang berubah
+     di layar tanpa lebar tetap membuat baris bergoyang, dan goyangan itu
+     membuat produk keuangan terasa murah. */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+
+  /* ── Palet "Instrument" ───────────────────────────────────────────
+     Netral dingin, bukan krem hangat. Aksen tunggal biru voltase yang
+     dipakai RATA, tanpa gradien dan tanpa cahaya luar. */
+  --color-paper: #fcfcfb;
+  --color-paper-2: #f4f4f2;
+  --color-paper-3: #ececeb;
+  --color-ink: #101114;
+  --color-ink-2: #40434a;
+  --color-ink-3: #74787f;
+  --color-hairline: #dededc;
+
+  --color-voltage: #2347ff;
+  --color-voltage-ink: #ffffff;
+  --color-voltage-soft: #e8ecff;
+
+  /* Warna status. Sembilan state order dipetakan ke empat keluarga saja,
+     supaya pengguna belajar empat hal, bukan sembilan. */
+  --color-wait: #a15c07;
+  --color-wait-soft: #fdf3e3;
+  --color-settle: #0f6f5c;
+  --color-settle-soft: #e4f4f0;
+  --color-dispute: #b4232b;
+  --color-dispute-soft: #fdeaea;
+  --color-closed: #5b5f68;
+  --color-closed-soft: #eeeeee;
+
+  /* ── Sudut ────────────────────────────────────────────────────────── */
+  --radius-control: 8px;
+  --radius-panel: 14px;
+
+  /* ── Bayangan ─────────────────────────────────────────────────────
+     Berlapis dan diberi rona latar, tidak pernah hitam murni. Bayangan
+     hitam murni di atas kertas terang adalah tanda paling cepat bahwa
+     sebuah antarmuka tidak diperhatikan. */
+  --shadow-raise: 0 1px 2px rgb(16 17 20 / 0.05), 0 4px 16px -6px rgb(16 17 20 / 0.09);
+  --shadow-float: 0 2px 4px rgb(16 17 20 / 0.05), 0 16px 42px -14px rgb(16 17 20 / 0.16);
+
+  /* ── Gerak ────────────────────────────────────────────────────────
+     Satu kurva untuk semua transisi non-pegas. Kurva yang berbeda-beda
+     antar komponen membuat aplikasi terasa dirakit dari potongan. */
+  --ease-out-quint: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Mode gelap ─────────────────────────────────────────────────────
+   Nilai token yang ditukar, BUKAN kelas yang ditambah. Dengan begitu
+   setiap komponen otomatis benar di kedua mode dan tidak ada satu pun
+   tempat yang bisa lupa dipasangi varian `dark:`. */
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-paper: #0b0c0e;
+    --color-paper-2: #131519;
+    --color-paper-3: #1b1e23;
+    --color-ink: #f2f3f5;
+    --color-ink-2: #b3b7bf;
+    --color-ink-3: #82868e;
+    --color-hairline: #24272d;
+
+    --color-voltage: #6b86ff;
+    --color-voltage-ink: #06080f;
+    --color-voltage-soft: #161c33;
+
+    --color-wait: #e2a54a;
+    --color-wait-soft: #2a2113;
+    --color-settle: #4bc4a8;
+    --color-settle-soft: #10231f;
+    --color-dispute: #f0757c;
+    --color-dispute-soft: #2a1416;
+    --color-closed: #9aa0aa;
+    --color-closed-soft: #1b1e23;
+
+    --shadow-raise: 0 1px 2px rgb(0 0 0 / 0.5), 0 4px 16px -6px rgb(0 0 0 / 0.6);
+    --shadow-float: 0 2px 4px rgb(0 0 0 / 0.5), 0 16px 42px -14px rgb(0 0 0 / 0.75);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   DASAR
+   ══════════════════════════════════════════════════════════════════════ */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Ukuran optis: pada ukuran besar, huruf dirapatkan supaya judul terbaca
+   sebagai satu bentuk, bukan sebagai deretan huruf. */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* SETIAP ANGKA memakai lebar tetap. Kolom angka yang tidak sejajar adalah
+   cacat yang langsung terlihat di tabel dana. */
+.num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+/* Fokus keyboard yang terlihat di kedua tema. Jangan pernah dihapus. */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-voltage);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-voltage);
+  color: var(--color-voltage-ink);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   KOMPONEN DASAR
+   Ditulis sebagai kelas, bukan ditumpuk sebagai utilitas di setiap tempat
+   pemakaian. Alasannya sederhana: aturan sudut dan bayangan di atas hanya
+   bisa ditegakkan kalau ada satu tempat yang mendefinisikannya.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@layer components {
+  .panel {
+    background: var(--color-paper);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-panel);
+  }
+
+  .panel-raised {
+    background: var(--color-paper);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-raise);
+  }
+
+  /* ── Tombol ──────────────────────────────────────────────────────
+     Umpan balik taktil pada :active adalah satu-satunya cara antarmuka
+     web mengaku bahwa ia ditekan. Tanpa itu tombol terasa seperti gambar. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    border-radius: var(--radius-control);
+    padding: 0.625rem 1.125rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.2;
+    transition:
+      background-color 0.18s var(--ease-out-quint),
+      border-color 0.18s var(--ease-out-quint),
+      transform 0.12s var(--ease-out-quint),
+      opacity 0.18s var(--ease-out-quint);
+  }
+
+  .btn:active:not(:disabled) {
+    transform: translateY(1px) scale(0.985);
+  }
+
+  .btn:disabled {
+    opacity: 0.42;
+    cursor: not-allowed;
+  }
+
+  .btn-primary {
+    background: var(--color-voltage);
+    color: var(--color-voltage-ink);
+    border: 1px solid var(--color-voltage);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    filter: brightness(1.08);
+  }
+
+  .btn-secondary {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    background: var(--color-paper-2);
+    border-color: var(--color-ink-3);
+  }
+
+  .btn-quiet {
+    background: transparent;
+    color: var(--color-ink-2);
+    border: 1px solid transparent;
+    padding-inline: 0.75rem;
+  }
+
+  .btn-quiet:hover:not(:disabled) {
+    background: var(--color-paper-2);
+    color: var(--color-ink);
+  }
+
+  /* ── Chip status — satu-satunya tempat radius penuh dipakai ────── */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 999px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  /* ── Form ────────────────────────────────────────────────────────
+     Label DI ATAS input, bantuan opsional, galat DI BAWAH. Tidak pernah
+     placeholder sebagai label — placeholder hilang begitu diketik, dan
+     pengguna yang teralihkan kehilangan konteks. */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .field-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-ink-2);
+  }
+
+  .field-input {
+    width: 100%;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-control);
+    padding: 0.625rem 0.875rem;
+    font-size: 0.9375rem;
+    transition: border-color 0.18s var(--ease-out-quint);
+  }
+
+  .field-input::placeholder {
+    /* Kontras placeholder dijaga di atas ambang AA. Placeholder kelabu
+       pucat adalah kegagalan aksesibilitas yang paling sering lolos. */
+    color: var(--color-ink-3);
+  }
+
+  .field-input:hover {
+    border-color: var(--color-ink-3);
+  }
+
+  .field-help {
+    font-size: 0.8125rem;
+    color: var(--color-ink-3);
+    line-height: 1.5;
+  }
+
+  .field-error {
+    font-size: 0.8125rem;
+    color: var(--color-dispute);
+  }
+
+  /* ── Garis rambut pemisah ────────────────────────────────────────
+     Dipakai untuk mengelompokkan alih-alih membungkus semuanya dengan
+     kartu. Kartu di dalam kartu di dalam kartu adalah cara tercepat
+     membuat halaman terasa berisik. */
+  .hair {
+    border-color: var(--color-hairline);
+  }
+
+  .mono-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-3);
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   GERAK
+   Semua animasi hanya menyentuh transform dan opacity — properti yang
+   dipercepat GPU. Menganimasikan width/height/top memaksa layout ulang
+   setiap frame dan langsung terasa di ponsel kelas menengah, yang persis
+   perangkat yang dipakai jastiper.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.6s var(--ease-out-quint) both;
+  }
+}
+
+/* Menghormati preferensi pengguna bukan pilihan. Sebagian orang merasa
+   mual karena gerak antarmuka, dan bagi mereka animasi bukan hiasan. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Latar terang untuk lampiran RainbowKit supaya modal wallet tidak
+   bertabrakan dengan tema kita. */
+[data-rk] {
+  --rk-radii-actionButton: var(--radius-control);
+  --rk-radii-connectButton: var(--radius-control);
+  --rk-radii-modal: var(--radius-panel);
+}
