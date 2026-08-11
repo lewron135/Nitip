@@ -8,6 +8,16 @@
 
 /** Isi contracts/deployments/*.json, dibekukan saat build. */
 export const deployments = {
+  "bsc-testnet": {
+    "address": "0x66e802417789b4dE7F75DcB70F36434c6112e9d3",
+    "arbiter": "0xAae40cf2B49aCd9FA965c5c60F4531532bAF2963",
+    "chainId": 97,
+    "deployBlock": 124393988,
+    "deployedAt": 1786423657,
+    "network": "bsc-testnet",
+    "owner": "0xf009485CABF985613C18485E069F63c3878F2d35",
+    "verifier": "0x08BFdB36283ac1E9f92C8172Ea224CB055b755F4"
+  },
   "anvil": {
     "address": "0x5fbdb2315678afecb367f032d93f642f64180aa3",
     "arbiter": "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65",
