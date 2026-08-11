@@ -96,7 +96,18 @@ NAMA_DARI_TOPIC = {topic: nama for nama, topic in TOPIC0.items()}
 def rpc(url: str, metode: str, params: list) -> object:
     payload = json.dumps({"jsonrpc": "2.0", "id": 1, "method": metode, "params": params}).encode()
     req = urllib.request.Request(
-        url, data=payload, headers={"content-type": "application/json"}, method="POST"
+        url,
+        data=payload,
+        # User-Agent bawaan urllib ("Python-urllib/3.x") ditolak 403 oleh
+        # publicnode & drpc — keduanya memblokirnya sebagai trafik bot.
+        # Ditemukan saat uji Skenario C terhadap BSC Testnet asli (§14.5
+        # RPC-4): `curl` polos lolos, urllib default tidak. Header di bawah
+        # meniru browser biasa supaya skrip ini tidak gagal di panggung.
+        headers={
+            "content-type": "application/json",
+            "user-agent": "Mozilla/5.0 (compatible; jejak-verify-independent/1.0)"
+        },
+        method="POST"
     )
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
