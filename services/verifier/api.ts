@@ -25,6 +25,7 @@ import {rekamArbiter, rekamJejak} from "../indexer/stats.js";
 import {tierCapWei, tierOf, TIER_LABELS} from "../scoring/trust.js";
 import {bacaStruk, cocokkanBarang, modeAi} from "./ai.js";
 import {putuskan} from "./decision.js";
+import {perkecilUntukAi} from "./gambar.js";
 import {weiKeIdr, tabelKurs} from "./fx.js";
 import {bacaBuktiLokal, simpanBukti} from "./storage.js";
 import {siapkanTabelVerifier, simpanBundel, simpanKeputusan, bundelOrder, keputusanOrder} from "./store.js";
@@ -214,12 +215,17 @@ app.post("/api/verify/:id", async (req, res) => {
   }
 
   try {
+    // Perkecil untuk AI SAJA — berkas bukti asli di storage.ts tidak disentuh,
+    // hash on-chain tetap dihitung dari yang diunggah pembeli/jastiper (§11.7).
+    const strukUntukAi = await perkecilUntukAi(bundel.struk.base64, bundel.struk.mediaType);
+    const barangUntukAi = bundel.barang ? await perkecilUntukAi(bundel.barang.base64, bundel.barang.mediaType) : null;
+
     // ── AI-1: baca struk ───────────────────────────────────────────
-    const struk = await bacaStruk(bundel.struk.base64, bundel.struk.mediaType);
+    const struk = await bacaStruk(strukUntukAi.base64, strukUntukAi.mediaType);
 
     // ── AI-2: cocokkan foto barang (kalau ada) ─────────────────────
-    const barang = bundel.barang
-      ? await cocokkanBarang(bundel.barang.base64, bundel.barang.mediaType, bundel.deskripsi ?? "")
+    const barang = barangUntukAi
+      ? await cocokkanBarang(barangUntukAi.base64, barangUntukAi.mediaType, bundel.deskripsi ?? "")
       : null;
 
     // ── Mesin keputusan (P2) ───────────────────────────────────────

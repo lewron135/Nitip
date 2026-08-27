@@ -54,6 +54,12 @@ services/verifier/uploads/
 services/**/data/
 .cache/
 
+# —— dataset eksternal (mentah, jangan dicommit — ratusan MB) ——
+# SROIE v2 (Kaggle) ditaruh di sini untuk evaluasi services/eval/.
+# Hasil evaluasinya sendiri (JSON/notebook) TETAP dicommit — cuma foto
+# mentahnya yang tidak, biar riwayat git tidak bengkak.
+/Data/
+
 # —— OS & editor ——
 .DS_Store
 Thumbs.db
