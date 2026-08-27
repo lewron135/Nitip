@@ -37,6 +37,7 @@ interface HasilSatuStruk {
   prediksi: HasilBacaStruk;
   cocokTotal: boolean;
   cocokTanggal: boolean;
+  cocokMerchant: boolean;
   perkiraanBiayaUsd: number;
 }
 
@@ -98,6 +99,7 @@ async function run(namaBerkas: string[]): Promise<HasilSatuStruk[]> {
       prediksi,
       cocokTotal: cocokkanTotal(groundTruth.total, prediksi.nominal),
       cocokTanggal: cocokkanTanggal(groundTruth.date, prediksi.tanggal),
+      cocokMerchant: cocokkanMerchant(groundTruth.company, prediksi.merchant),
       perkiraanBiayaUsd
     });
   }
@@ -130,6 +132,21 @@ function cocokkanTanggal(tanggalAsli: string, tanggalPrediksi: string | null): b
   return dinormalisasi === tanggalPrediksi;
 }
 
+/**
+ * Perbandingan longgar: nama merchant hasil OCR/AI jarang identik persis-huruf
+ * dengan label (spasi ekstra, tanda baca, "SDN BHD" vs "SDN. BHD."). Yang
+ * dinilai adalah salah satu memuat yang lain setelah dinormalisasi, bukan
+ * kesamaan string 100%.
+ */
+function cocokkanMerchant(companyAsli: string, merchantPrediksi: string | null): boolean {
+  if (!merchantPrediksi) return false;
+  const normalisasi = (s: string) => s.toUpperCase().replace(/[^A-Z0-9]/g, "");
+  const a = normalisasi(companyAsli);
+  const b = normalisasi(merchantPrediksi);
+  if (!a || !b) return false;
+  return a.includes(b) || b.includes(a);
+}
+
 /** Perkiraan kasar (bukan meteran asli) — lihat README § Biaya. */
 async function hitungPerkiraanBiaya(base64Gambar: string, hasil: HasilBacaStruk): Promise<number> {
   if (hasil.sumber === "mock") return 0;
@@ -146,6 +163,7 @@ function cetakRingkasan(hasil: HasilSatuStruk[]): void {
   const n = hasil.length;
   const cocokTotal = hasil.filter((h) => h.cocokTotal).length;
   const cocokTanggal = hasil.filter((h) => h.cocokTanggal).length;
+  const cocokMerchant = hasil.filter((h) => h.cocokMerchant).length;
   const rataKeyakinan = hasil.reduce((a, h) => a + h.prediksi.keyakinan, 0) / n;
   const totalBiaya = hasil.reduce((a, h) => a + h.perkiraanBiayaUsd, 0);
 
@@ -153,6 +171,7 @@ function cetakRingkasan(hasil: HasilSatuStruk[]): void {
   console.log(`  Struk diuji         : ${n}`);
   console.log(`  Total cocok         : ${cocokTotal}/${n}  (${((cocokTotal / n) * 100).toFixed(1)}%)`);
   console.log(`  Tanggal cocok       : ${cocokTanggal}/${n}  (${((cocokTanggal / n) * 100).toFixed(1)}%)`);
+  console.log(`  Merchant cocok      : ${cocokMerchant}/${n}  (${((cocokMerchant / n) * 100).toFixed(1)}%)`);
   console.log(`  Rata-rata keyakinan : ${rataKeyakinan.toFixed(3)}`);
   console.log(`  Perkiraan biaya     : $${totalBiaya.toFixed(4)} (yang benar-benar manggil API, bukan dari cache)`);
   console.log(`  Hasil lengkap       : services/eval/results/hasil-eval.json`);

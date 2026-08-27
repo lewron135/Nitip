@@ -25,6 +25,7 @@
     },
     "cocokTotal": true,
     "cocokTanggal": true,
+    "cocokMerchant": true,
     "perkiraanBiayaUsd": 0
   },
   {
@@ -53,6 +54,7 @@
     },
     "cocokTotal": true,
     "cocokTanggal": true,
+    "cocokMerchant": true,
     "perkiraanBiayaUsd": 0
   },
   {
@@ -106,6 +108,7 @@
     },
     "cocokTotal": true,
     "cocokTanggal": true,
+    "cocokMerchant": true,
     "perkiraanBiayaUsd": 0
   },
   {
@@ -139,6 +142,7 @@
     },
     "cocokTotal": true,
     "cocokTanggal": true,
+    "cocokMerchant": true,
     "perkiraanBiayaUsd": 0
   },
   {
@@ -177,6 +181,7 @@
     },
     "cocokTotal": true,
     "cocokTanggal": true,
+    "cocokMerchant": false,
     "perkiraanBiayaUsd": 0
   },
   {
@@ -210,6 +215,7 @@
     },
     "cocokTotal": true,
     "cocokTanggal": true,
+    "cocokMerchant": true,
     "perkiraanBiayaUsd": 0
   },
   {
@@ -238,6 +244,7 @@
     },
     "cocokTotal": true,
     "cocokTanggal": true,
+    "cocokMerchant": true,
     "perkiraanBiayaUsd": 0
   },
   {
@@ -281,6 +288,7 @@
     },
     "cocokTotal": true,
     "cocokTanggal": true,
+    "cocokMerchant": true,
     "perkiraanBiayaUsd": 0
   }
 ]
