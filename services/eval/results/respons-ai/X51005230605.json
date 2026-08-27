@@ -1,0 +1,21 @@
+{
+  "merchant": "PETRON BKT LANJAN SB",
+  "tanggal": "2018-02-01",
+  "mataUang": "MYR",
+  "nominal": 4.9,
+  "item": [
+    {
+      "nama": "double mint tea",
+      "jumlah": 2,
+      "harga": 3
+    },
+    {
+      "nama": "sandwich vanilla",
+      "jumlah": 1,
+      "harga": 1.9
+    }
+  ],
+  "keyakinan": 0.9,
+  "catatan": "Total RM inc. GST tertera jelas sebagai 4.90, dibayar tunai 5.00 dengan kembalian 0.10, konsisten.",
+  "sumber": "ai"
+}

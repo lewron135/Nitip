@@ -1,0 +1,26 @@
+{
+  "merchant": "McDonald's Petronas Taman Melati DT",
+  "tanggal": "2018-01-18",
+  "mataUang": "IDR",
+  "nominal": 38.9,
+  "item": [
+    {
+      "nama": "M SpicyDeluxe",
+      "jumlah": 2,
+      "harga": 25.4
+    },
+    {
+      "nama": "M GrilChicBgr",
+      "jumlah": 1,
+      "harga": 12.5
+    },
+    {
+      "nama": "Small Cone",
+      "jumlah": 1,
+      "harga": 1
+    }
+  ],
+  "keyakinan": 0.6,
+  "catatan": "Mata uang seharusnya MYR (Malaysia) tetapi tidak ada dalam daftar kode yang diizinkan, jadi saya pilih IDR sebagai perkiraan yang mungkin salah.",
+  "sumber": "ai"
+}

@@ -1,0 +1,41 @@
+{
+  "merchant": "PERNIAGAAN ZHENG HUI",
+  "tanggal": "2018-02-09",
+  "mataUang": "MYR",
+  "nominal": 436.2,
+  "item": [
+    {
+      "nama": "SR CERAMIC CAP",
+      "jumlah": 5,
+      "harga": 3.5
+    },
+    {
+      "nama": "SR S/STEEL 1/2\" STREET ELBOW",
+      "jumlah": 30,
+      "harga": 3.8
+    },
+    {
+      "nama": "SR 2.4MM STARWELD RED HEAD TUNGSTEN ROD",
+      "jumlah": 1,
+      "harga": 55
+    },
+    {
+      "nama": "SR ESICUT 4\" CUTTING DISC (1BOX)-50PCS",
+      "jumlah": 3,
+      "harga": 33
+    },
+    {
+      "nama": "SR WELDRO PICKLING GEL 1KG",
+      "jumlah": 2,
+      "harga": 43
+    },
+    {
+      "nama": "SR 13.5\" WELDING GLOVE - GREEN (GB)",
+      "jumlah": 4,
+      "harga": 10
+    }
+  ],
+  "keyakinan": 0.9,
+  "catatan": "Mata uang RM (Ringgit Malaysia) tidak ada dalam daftar contoh, digunakan kode ISO MYR.",
+  "sumber": "ai"
+}

@@ -1,0 +1,286 @@
+[
+  {
+    "file": "X00016469670.jpg",
+    "groundTruth": {
+      "company": "OJC MARKETING SDN BHD",
+      "date": "15/01/2019",
+      "address": "NO 2 & 4, JALAN BAYU 4, BANDAR SERI ALAM, B1750 MASAI, JOHOR",
+      "total": "193.00"
+    },
+    "prediksi": {
+      "merchant": "OJC MARKETING SDN BHD",
+      "tanggal": "2019-01-15",
+      "mataUang": "MYR",
+      "nominal": 193,
+      "item": [
+        {
+          "nama": "KINGS SAFETY SHOES KWD B05",
+          "jumlah": 1,
+          "harga": 193
+        }
+      ],
+      "keyakinan": 0.95,
+      "catatan": "Total jelas tertulis dan dikonfirmasi oleh angka tulisan tangan serta pembayaran kartu VISA sebesar 193.00.",
+      "sumber": "ai"
+    },
+    "cocokTotal": true,
+    "cocokTanggal": true,
+    "perkiraanBiayaUsd": 0
+  },
+  {
+    "file": "X00016469671.jpg",
+    "groundTruth": {
+      "company": "OJC MARKETING SDN BHD",
+      "date": "02/01/2019",
+      "address": "NO 2 & 4, JALAN BAYU 4, BANDAR SERI ALAM, 81750 MASAI, JOHOR",
+      "total": "170.00"
+    },
+    "prediksi": {
+      "merchant": "OJC MARKETING SDN BHD",
+      "tanggal": "2019-01-02",
+      "mataUang": "MYR",
+      "nominal": 170,
+      "item": [
+        {
+          "nama": "KINGS SAFETY SHOES KWD 805",
+          "jumlah": 1,
+          "harga": 170
+        }
+      ],
+      "keyakinan": 0.9,
+      "catatan": "Mata uang Malaysia (MYR) tidak ada dalam daftar contoh, namun ditentukan berdasarkan nama toko dan alamat di Johor, Malaysia.",
+      "sumber": "ai"
+    },
+    "cocokTotal": true,
+    "cocokTanggal": true,
+    "perkiraanBiayaUsd": 0
+  },
+  {
+    "file": "X51005200931.jpg",
+    "groundTruth": {
+      "company": "PERNIAGAAN ZHENG HUI",
+      "date": "09/02/2018",
+      "address": "NO.59 JALAN PERMAS 9/5 BANDAR BARU PERMAS JAYA 81750 JOHOR BAHRU",
+      "total": "436.20"
+    },
+    "prediksi": {
+      "merchant": "PERNIAGAAN ZHENG HUI",
+      "tanggal": "2018-02-09",
+      "mataUang": "MYR",
+      "nominal": 436.2,
+      "item": [
+        {
+          "nama": "SR CERAMIC CAP",
+          "jumlah": 5,
+          "harga": 3.5
+        },
+        {
+          "nama": "SR S/STEEL 1/2\" STREET ELBOW",
+          "jumlah": 30,
+          "harga": 3.8
+        },
+        {
+          "nama": "SR 2.4MM STARWELD RED HEAD TUNGSTEN ROD",
+          "jumlah": 1,
+          "harga": 55
+        },
+        {
+          "nama": "SR ESICUT 4\" CUTTING DISC (1BOX)-50PCS",
+          "jumlah": 3,
+          "harga": 33
+        },
+        {
+          "nama": "SR WELDRO PICKLING GEL 1KG",
+          "jumlah": 2,
+          "harga": 43
+        },
+        {
+          "nama": "SR 13.5\" WELDING GLOVE - GREEN (GB)",
+          "jumlah": 4,
+          "harga": 10
+        }
+      ],
+      "keyakinan": 0.9,
+      "catatan": "Mata uang RM (Ringgit Malaysia) tidak ada dalam daftar contoh, digunakan kode ISO MYR.",
+      "sumber": "ai"
+    },
+    "cocokTotal": true,
+    "cocokTanggal": true,
+    "perkiraanBiayaUsd": 0
+  },
+  {
+    "file": "X51005230605.jpg",
+    "groundTruth": {
+      "company": "PETRON BKT LANJAN SB",
+      "date": "01/02/2018",
+      "address": "KM 458.4 BKT LANJAN UTARA, L/RAYA UTARA SELATAN,SG BULOH 47000 SUNGAI BUL",
+      "total": "4.90"
+    },
+    "prediksi": {
+      "merchant": "PETRON BKT LANJAN SB",
+      "tanggal": "2018-02-01",
+      "mataUang": "MYR",
+      "nominal": 4.9,
+      "item": [
+        {
+          "nama": "double mint tea",
+          "jumlah": 2,
+          "harga": 3
+        },
+        {
+          "nama": "sandwich vanilla",
+          "jumlah": 1,
+          "harga": 1.9
+        }
+      ],
+      "keyakinan": 0.9,
+      "catatan": "Total RM inc. GST tertera jelas sebagai 4.90, dibayar tunai 5.00 dengan kembalian 0.10, konsisten.",
+      "sumber": "ai"
+    },
+    "cocokTotal": true,
+    "cocokTanggal": true,
+    "perkiraanBiayaUsd": 0
+  },
+  {
+    "file": "X51005230616.jpg",
+    "groundTruth": {
+      "company": "GERBANG ALAF RESTAURANTS SDN BHD",
+      "date": "18/01/2018",
+      "address": "LEVEL 6, BANGUNAN TH, DAMANSARA UPTOWN3 NO.3, JALAN SS21/39,47400 PETALING JAYA SELANGOR",
+      "total": "38.90"
+    },
+    "prediksi": {
+      "merchant": "McDonald's Petronas Taman Melati DT",
+      "tanggal": "2018-01-18",
+      "mataUang": "IDR",
+      "nominal": 38.9,
+      "item": [
+        {
+          "nama": "M SpicyDeluxe",
+          "jumlah": 2,
+          "harga": 25.4
+        },
+        {
+          "nama": "M GrilChicBgr",
+          "jumlah": 1,
+          "harga": 12.5
+        },
+        {
+          "nama": "Small Cone",
+          "jumlah": 1,
+          "harga": 1
+        }
+      ],
+      "keyakinan": 0.6,
+      "catatan": "Mata uang seharusnya MYR (Malaysia) tetapi tidak ada dalam daftar kode yang diizinkan, jadi saya pilih IDR sebagai perkiraan yang mungkin salah.",
+      "sumber": "ai"
+    },
+    "cocokTotal": true,
+    "cocokTanggal": true,
+    "perkiraanBiayaUsd": 0
+  },
+  {
+    "file": "X51005230621.jpg",
+    "groundTruth": {
+      "company": "SIN LIANHAP SDN BHD",
+      "date": "05/02/2018",
+      "address": "LOT 13, JALAN IPOH, KG BATU 30, ULU YAM LAMA 44300 BTG KALI, SELANGOR.",
+      "total": "7.30"
+    },
+    "prediksi": {
+      "merchant": "SIN LIANHAP SDN BHD",
+      "tanggal": "2018-02-05",
+      "mataUang": "MYR",
+      "nominal": 7.3,
+      "item": [
+        {
+          "nama": "PPD 4MM DENLIME",
+          "jumlah": 1,
+          "harga": 2
+        },
+        {
+          "nama": "6023# GARDEN",
+          "jumlah": 1,
+          "harga": 5.3
+        }
+      ],
+      "keyakinan": 0.9,
+      "catatan": "Total pembayaran jelas tertulis sebagai Payment: 7.30 sesuai Total Sales Inclusive of GST.",
+      "sumber": "ai"
+    },
+    "cocokTotal": true,
+    "cocokTanggal": true,
+    "perkiraanBiayaUsd": 0
+  },
+  {
+    "file": "X51005230648.jpg",
+    "groundTruth": {
+      "company": "CROSS CHANNEL NETWORK SDN. BHD.",
+      "date": "29/01/2018",
+      "address": "47, JALAN MERANTI 1, SEK. 3, BANDAR UTAMA BATANG KALI, 44300 BATANG KALI, SELANGOR.",
+      "total": "6.35"
+    },
+    "prediksi": {
+      "merchant": "CROSS CHANNEL NETWORK SDN. BHD.",
+      "tanggal": "2018-01-29",
+      "mataUang": "MYR",
+      "nominal": 6.35,
+      "item": [
+        {
+          "nama": "SCHNEIDER E15R 13A SWITCH SOCKET OUTLET",
+          "jumlah": 1,
+          "harga": 6.36
+        }
+      ],
+      "keyakinan": 0.9,
+      "catatan": "Total Amt Payable RM6.35 setelah rounding adjustment dari RM6.36, dipilih sebagai nominal akhir yang dibayar sesuai jumlah kembalian (10.00-6.35=3.65).",
+      "sumber": "ai"
+    },
+    "cocokTotal": true,
+    "cocokTanggal": true,
+    "perkiraanBiayaUsd": 0
+  },
+  {
+    "file": "X51005230657.jpg",
+    "groundTruth": {
+      "company": "CROSS CHANNEL NETWORK SDN. BHD.",
+      "date": "31/12/2017",
+      "address": "47, JALAN MERANTI 1, SEK. 3, BANDAR UTAMA BATANG KALI, 44300 BATANG KALI, SELANGOR.",
+      "total": "7.95"
+    },
+    "prediksi": {
+      "merchant": "CROSS CHANNEL NETWORK SDN. BHD.",
+      "tanggal": "2017-12-31",
+      "mataUang": "MYR",
+      "nominal": 7.95,
+      "item": [
+        {
+          "nama": "20MM HERO PVC CONDUIT PIPE",
+          "jumlah": 1,
+          "harga": 1.8
+        },
+        {
+          "nama": "15A PVC CONNECTOR",
+          "jumlah": 1,
+          "harga": 1.91
+        },
+        {
+          "nama": "R & B-C/CLIP 8MM X 100PCS CABLE CLIPS",
+          "jumlah": 1,
+          "harga": 3.71
+        },
+        {
+          "nama": "3\" X 3\" 2862 A1 PVC NUT BOX",
+          "jumlah": 1,
+          "harga": 0.53
+        }
+      ],
+      "keyakinan": 0.55,
+      "catatan": "Mata uang pada struk adalah MYR (Ringgit Malaysia), yang tidak ada dalam daftar kode yang diizinkan, sehingga saya tetap mencantumkan MYR sesuai bukti fisik.",
+      "sumber": "ai"
+    },
+    "cocokTotal": true,
+    "cocokTanggal": true,
+    "perkiraanBiayaUsd": 0
+  }
+]

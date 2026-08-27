@@ -1,0 +1,16 @@
+{
+  "merchant": "OJC MARKETING SDN BHD",
+  "tanggal": "2019-01-02",
+  "mataUang": "MYR",
+  "nominal": 170,
+  "item": [
+    {
+      "nama": "KINGS SAFETY SHOES KWD 805",
+      "jumlah": 1,
+      "harga": 170
+    }
+  ],
+  "keyakinan": 0.9,
+  "catatan": "Mata uang Malaysia (MYR) tidak ada dalam daftar contoh, namun ditentukan berdasarkan nama toko dan alamat di Johor, Malaysia.",
+  "sumber": "ai"
+}

@@ -1,0 +1,16 @@
+{
+  "merchant": "CROSS CHANNEL NETWORK SDN. BHD.",
+  "tanggal": "2018-01-29",
+  "mataUang": "MYR",
+  "nominal": 6.35,
+  "item": [
+    {
+      "nama": "SCHNEIDER E15R 13A SWITCH SOCKET OUTLET",
+      "jumlah": 1,
+      "harga": 6.36
+    }
+  ],
+  "keyakinan": 0.9,
+  "catatan": "Total Amt Payable RM6.35 setelah rounding adjustment dari RM6.36, dipilih sebagai nominal akhir yang dibayar sesuai jumlah kembalian (10.00-6.35=3.65).",
+  "sumber": "ai"
+}
