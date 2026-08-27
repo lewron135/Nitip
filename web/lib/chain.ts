@@ -39,8 +39,20 @@ const rpcUrl =
 
 const wcProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_ID?.trim();
 
+/**
+ * Ketiga rantai didaftarkan sekaligus, walau produk hanya memakai satu.
+ *
+ * Alasannya tipe, dan alasannya nyata: `chain` dipilih saat runtime dari
+ * variabel lingkungan, jadi tipenya adalah gabungan ketiganya. Mendaftarkan
+ * satu saja membuat `transports` kekurangan dua kunci yang dianggap wajib
+ * oleh wagmi, dan berkas ini tidak pernah bisa dikompilasi.
+ *
+ * Efek sampingnya justru berguna: wallet yang sedang berada di rantai lain
+ * tetap terbaca, sehingga antarmuka bisa menawarkan pindah jaringan alih-alih
+ * gagal tanpa penjelasan.
+ */
 export const wagmiConfig = createConfig({
-  chains: [chain],
+  chains: [bscTestnet, bsc, anvil],
   connectors: [
     injected(),
     // WalletConnect hanya dipasang kalau project id-nya benar-benar ada.
@@ -48,7 +60,11 @@ export const wagmiConfig = createConfig({
     // DEMO, dengan galat yang tidak menyebut penyebabnya.
     ...(wcProjectId ? [walletConnect({projectId: wcProjectId, showQrModal: true})] : [])
   ],
-  transports: {[chain.id]: http(rpcUrl)},
+  transports: {
+    [bscTestnet.id]: http(CHAIN_ID === 97 ? rpcUrl : undefined),
+    [bsc.id]: http(CHAIN_ID === 56 ? rpcUrl : undefined),
+    [anvil.id]: http(CHAIN_ID === 31337 ? rpcUrl : "http://127.0.0.1:8545")
+  },
   ssr: true
 });
 
