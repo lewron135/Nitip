@@ -20,6 +20,7 @@ import {bsc, bscTestnet} from "wagmi/chains";
 import {injected, walletConnect} from "wagmi/connectors";
 import {defineChain} from "viem";
 import {jejakEscrowAbi} from "./abi";
+import {deploymentFor} from "./deployment";
 
 /** Rantai lokal untuk latihan seluruh alur tanpa menyentuh testnet. */
 export const anvil = defineChain({
@@ -48,11 +49,21 @@ export const wagmiConfig = createConfig({
     // DEMO, dengan galat yang tidak menyebut penyebabnya.
     ...(wcProjectId ? [walletConnect({projectId: wcProjectId, showQrModal: true})] : [])
   ],
-  transports: {[chain.id]: http(rpcUrl)},
+  // Cast eksplisit: TS melebarkan kunci komputasi bertipe union numerik ke
+  // `{[x: number]: T}`, sehingga tidak otomatis cocok dengan
+  // `Record<97 | 31337 | 56, Transport>` yang diharapkan createConfig.
+  transports: {[chain.id]: http(rpcUrl)} as Record<typeof chain.id, ReturnType<typeof http>>,
   ssr: true
 });
 
-export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS ?? "") as `0x${string}`;
+// Fallback ke contracts/deployments/*.json kalau NEXT_PUBLIC_CONTRACT_ADDRESS
+// belum diisi di .env.local — supaya dev lokal jalan tanpa setup manual,
+// dan halaman status tidak kosong sebelum siapa pun mengisi .env.
+const deployedContract = deploymentFor(CHAIN_ID);
+
+export const CONTRACT_ADDRESS = (process.env.NEXT_PUBLIC_CONTRACT_ADDRESS?.trim() ||
+  deployedContract?.address ||
+  "") as `0x${string}`;
 
 export const escrowContract = {
   address: CONTRACT_ADDRESS,
