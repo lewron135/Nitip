@@ -1,0 +1,21 @@
+{
+  "merchant": "SIN LIANHAP SDN BHD",
+  "tanggal": "2018-02-05",
+  "mataUang": "MYR",
+  "nominal": 7.3,
+  "item": [
+    {
+      "nama": "PPD 4MM DENLIME",
+      "jumlah": 1,
+      "harga": 2
+    },
+    {
+      "nama": "6023# GARDEN",
+      "jumlah": 1,
+      "harga": 5.3
+    }
+  ],
+  "keyakinan": 0.9,
+  "catatan": "Total pembayaran jelas tertulis sebagai Payment: 7.30 sesuai Total Sales Inclusive of GST.",
+  "sumber": "ai"
+}

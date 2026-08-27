@@ -1,0 +1,31 @@
+{
+  "merchant": "CROSS CHANNEL NETWORK SDN. BHD.",
+  "tanggal": "2017-12-31",
+  "mataUang": "MYR",
+  "nominal": 7.95,
+  "item": [
+    {
+      "nama": "20MM HERO PVC CONDUIT PIPE",
+      "jumlah": 1,
+      "harga": 1.8
+    },
+    {
+      "nama": "15A PVC CONNECTOR",
+      "jumlah": 1,
+      "harga": 1.91
+    },
+    {
+      "nama": "R & B-C/CLIP 8MM X 100PCS CABLE CLIPS",
+      "jumlah": 1,
+      "harga": 3.71
+    },
+    {
+      "nama": "3\" X 3\" 2862 A1 PVC NUT BOX",
+      "jumlah": 1,
+      "harga": 0.53
+    }
+  ],
+  "keyakinan": 0.55,
+  "catatan": "Mata uang pada struk adalah MYR (Ringgit Malaysia), yang tidak ada dalam daftar kode yang diizinkan, sehingga saya tetap mencantumkan MYR sesuai bukti fisik.",
+  "sumber": "ai"
+}

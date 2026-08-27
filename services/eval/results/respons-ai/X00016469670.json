@@ -1,0 +1,16 @@
+{
+  "merchant": "OJC MARKETING SDN BHD",
+  "tanggal": "2019-01-15",
+  "mataUang": "MYR",
+  "nominal": 193,
+  "item": [
+    {
+      "nama": "KINGS SAFETY SHOES KWD B05",
+      "jumlah": 1,
+      "harga": 193
+    }
+  ],
+  "keyakinan": 0.95,
+  "catatan": "Total jelas tertulis dan dikonfirmasi oleh angka tulisan tangan serta pembayaran kartu VISA sebesar 193.00.",
+  "sumber": "ai"
+}
